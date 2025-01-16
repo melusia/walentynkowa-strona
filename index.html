@@ -3,83 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walentynka</title>
+    <title>Walentynkowe pytanie</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #ffe6e6;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #ffe4e1;
+            color: #333;
+            padding: 20px;
         }
-        #question {
-            display: block;
-        }
-        #response {
+        #response-container {
             display: none;
+            margin-top: 20px;
         }
-        .button {
-            padding: 10px 20px;
+        #response-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        button {
             margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff69b4;
+            color: white;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
         }
-        .button-yes {
-            background-color: #ff9999;
-            color: white;
-        }
-        .button-no {
-            background-color: #cccccc;
-            color: black;
-        }
-        img {
-            max-width: 300px;
-            margin-top: 20px;
+        button:hover {
+            background-color: #ff1493;
         }
     </style>
 </head>
 <body>
-    <div id="question">
-        <h1>Czy zostaniesz moją walentynką?</h1>
-        <button class="button button-yes" onclick="showResponse('yes')">TAK</button>
-        <button class="button button-no" onclick="showResponse('no')">NIE</button>
-    </div>
-    <div id="response">
-        <h1 id="response-text"></h1>
-        <img id="response-image" src="" alt="">
-        <button class="button button-no" onclick="resetPage()">Powrót</button>
+    <h1>Czy zostaniesz moją walentynką?</h1>
+    <button onclick="showResponse('yes')">TAK</button>
+    <button onclick="showResponse('no')">NIE</button>
+
+    <div id="response-container">
+        <img id="response-image" src="" alt="Odpowiedź">
+        <p id="response-text"></p>
+        <button onclick="reset()">Powrót</button>
     </div>
 
     <script>
         function showResponse(answer) {
-            const questionDiv = document.getElementById('question');
-            const responseDiv = document.getElementById('response');
-            const responseText = document.getElementById('response-text');
+            const container = document.getElementById('response-container');
             const responseImage = document.getElementById('response-image');
-
-            questionDiv.style.display = 'none';
-            responseDiv.style.display = 'block';
+            const responseText = document.getElementById('response-text');
 
             if (answer === 'yes') {
-                responseText.textContent = 'Dziękuję, Kocham Cię';
-                responseImage.src = 'https://placekitten.com/300/300'; // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQClsGIOgGl-LDZcOuIxjccVxPNdzA4IVrRYg&s
-                responseImage.alt = 'Słodki piesek';
+                responseImage.src = 'slodki-piesek.jpg'; // Obrazek dla TAK
+                responseText.textContent = 'Dziękuję, Kocham Cię!';
             } else {
-                responseText.textContent = 'Jest mi przykro';
-                responseImage.src = 'https://placekitten.com/300/301'; // https://a.allegroimg.com/s512/115a63/801020824226b3715960378e728e/SMUTNY-CHOMIK-ODTWARZAJACY-DZWIEK-Z-KOKARDKA-SAD-HAMSTER-PLUSZAK-DZIECKO-EAN-GTIN-5906815300241
-                responseImage.alt = 'Smutny-piesek';
+                responseImage.src = 'smutny-piesek.jpg'; // Obrazek dla NIE
+                responseText.textContent = 'Jest mi przykro.';
             }
+
+            container.style.display = 'block';
         }
 
-        function resetPage() {
-            document.getElementById('response').style.display = 'none';
-            document.getElementById('question').style.display = 'block';
+        function reset() {
+            const container = document.getElementById('response-container');
+            container.style.display = 'none';
         }
     </script>
 </body>
