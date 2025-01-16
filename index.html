@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walentynka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #question {
+            display: block;
+        }
+        #response {
+            display: none;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button-yes {
+            background-color: #ff9999;
+            color: white;
+        }
+        .button-no {
+            background-color: #cccccc;
+            color: black;
+        }
+        img {
+            max-width: 300px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="question">
+        <h1>Czy zostaniesz moją walentynką?</h1>
+        <button class="button button-yes" onclick="showResponse('yes')">TAK</button>
+        <button class="button button-no" onclick="showResponse('no')">NIE</button>
+    </div>
+    <div id="response">
+        <h1 id="response-text"></h1>
+        <img id="response-image" src="" alt="">
+        <button class="button button-no" onclick="resetPage()">Powrót</button>
+    </div>
+
+    <script>
+        function showResponse(answer) {
+            const questionDiv = document.getElementById('question');
+            const responseDiv = document.getElementById('response');
+            const responseText = document.getElementById('response-text');
+            const responseImage = document.getElementById('response-image');
+
+            questionDiv.style.display = 'none';
+            responseDiv.style.display = 'block';
+
+            if (answer === 'yes') {
+                responseText.textContent = 'Dziękuję, Kocham Cię';
+                responseImage.src = 'https://placekitten.com/300/300'; // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQClsGIOgGl-LDZcOuIxjccVxPNdzA4IVrRYg&s
+                responseImage.alt = 'Słodki piesek';
+            } else {
+                responseText.textContent = 'Jest mi przykro';
+                responseImage.src = 'https://placekitten.com/300/301'; // https://a.allegroimg.com/s512/115a63/801020824226b3715960378e728e/SMUTNY-CHOMIK-ODTWARZAJACY-DZWIEK-Z-KOKARDKA-SAD-HAMSTER-PLUSZAK-DZIECKO-EAN-GTIN-5906815300241
+                responseImage.alt = 'Smutny-piesek';
+            }
+        }
+
+        function resetPage() {
+            document.getElementById('response').style.display = 'none';
+            document.getElementById('question').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
